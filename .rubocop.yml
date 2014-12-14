@@ -1,0 +1,96 @@
+AllCops:
+  Exclude:
+    - 'vendor/**/*'
+    - 'spec/fixtures/**/*'
+
+Style/AlignHash:
+  EnforcedHashRocketStyle: separator
+  EnforcedColonStyle: separator
+
+Style/CollectionMethods:
+  # Mapping from undesired method to desired_method
+  # e.g. to use `detect` over `find`:
+  #
+  # CollectionMethods:
+  #   PreferredMethods:
+  #     find: detect
+  PreferredMethods:
+    collect: 'map'
+    collect!: 'map!'
+    reduce: 'inject'
+    detect: 'find'
+    select: 'find_all'
+
+Style/GuardClause:
+  Description: "Check for conditionals that can be replaced with guard clauses"
+  StyleGuide: "https://github.com/bbatsov/ruby-style-guide#no-nested-conditionals"
+  Enabled: true
+
+# I don't want to write documentation for every class
+Style/Documentation:
+  Description: "Document classes and non-namespace modules."
+  Enabled: false
+
+# I will use the %r syntax even if there's only one slash
+Style/RegexpLiteral:
+  Description: >-
+                 Use %r for regular expressions matching more than
+                 `MaxSlashes` "/" characters.
+  StyleGuide: "https://github.com/bbatsov/ruby-style-guide#percent-r"
+  MaxSlashes: 0
+  Enabled: true
+
+# I prefer raise to fail
+Style/SignalException:
+  Description: "Checks for proper usage of fail and raise."
+  StyleGuide: "https://github.com/bbatsov/ruby-style-guide#fail-method"
+  Enabled: false
+
+# Expect a final blank line
+Style/TrailingBlankLines:
+  Description: "Checks trailing blank lines and final newline."
+  StyleGuide: "https://github.com/bbatsov/ruby-style-guide#newline-eof"
+  Enabled: true
+  EnforcedStyle: final_blank_line
+
+Style/DoubleNegation:
+  Description: 'Checks for uses of double negation (!!).'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-bang-bang'
+  Enabled: false
+
+Style/ClassCheck:
+  Description: 'Enforces consistent use of `Object#is_a?` or `Object#kind_of?`.'
+  Enabled: false
+
+Metrics/AbcSize:
+  Description: >-
+                 A calculated magnitude based on number of assignments,
+                 branches, and conditions.
+  Enabled: false
+
+Metrics/LineLength:
+  Description: 'Limit lines to 100 characters.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#80-character-limits'
+  Enabled: true
+  Max: 100
+
+Style/AlignHash:
+  Description: >-
+                 Align the elements of a hash literal if they span more than
+                 one line.
+  Enabled: false
+
+Style/TrailingBlankLines:
+  Description: 'Checks trailing blank lines and final newline.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#newline-eof'
+  Enabled: false
+
+Style/IndentHash:
+  Description: 'Checks the indentation of the first key in a hash literal.'
+  Enabled: false
+
+Lint/UnusedMethodArgument:
+  Description: 'Checks for unused method arguments.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#underscore-unused-vars'
+  Enabled: false
+
