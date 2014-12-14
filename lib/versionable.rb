@@ -1,10 +1,18 @@
 module Versionable
   class << self
     attr_reader :config
-  end
 
-  def self.included(base)
-    base.extend(ClassMethods)
+    def version
+      '0.2.3'
+    end
+
+    def configure(&blk)
+      @config ||= Configuration.new(&blk)
+    end
+
+    def included(base)
+      base.extend(ClassMethods)
+    end
   end
 
   module ClassMethods

@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe Versionable do
 
+  Versionable.configure do
+    thumbor_server 'http://thumbor_server.net'
+  end
+
   class FakeClass
     include Versionable
 
@@ -43,11 +47,10 @@ describe Versionable do
       expect(fake_product.image).to respond_to(:to_json)
       expect(fake_product.image.to_json).to eq(
         '{"url":"http://google.com/favicon.ico","form_thumbnail":{"url":' \
-        '"http://d1bh8njmv27xmo.cloudfront.net/bUsCCZFT0TMPVoSfCu5JRLgJd' \
-        'sA=/100x150/filters:quality(50)/http://google.com/favicon.ico"}' \
-        ',"form_thumbnail_2":{"url":"http://d1bh8njmv27xmo.cloudfront.ne' \
-        't/JafVjn15T0CXvQ9GsdkwyMDBS_U=/100x150/http://google.com/favico' \
-        'n.ico"}}')
+        '"http://thumbor_server.net/IjY9_2OC4-Ke2g_ox9hb-cje_zM=/100x150' \
+        '/filters:quality(50)/http://google.com/favicon.ico"},"form_thum' \
+        'bnail_2":{"url":"http://thumbor_server.net/QGjyXwbV-z-JUanOuPWF' \
+        'tJbLmUw=/100x150/http://google.com/favicon.ico"}}')
     end
 
     context 'when the image is valid' do
@@ -106,8 +109,14 @@ describe Versionable do
       end
 
       it 'should correctly constructs the url' do
-        expect(fake_product.image.form_thumbnail.url).to eq('http://d1bh8njmv27xmo.cloudfront.net/bUsCCZFT0TMPVoSfCu5JRLgJdsA=/100x150/filters:quality(50)/http://google.com/favicon.ico')
-        expect(fake_product.image.form_thumbnail_2.url).to eq('http://d1bh8njmv27xmo.cloudfront.net/JafVjn15T0CXvQ9GsdkwyMDBS_U=/100x150/http://google.com/favicon.ico')
+        expect(fake_product.image.form_thumbnail.url).to eq(
+          'http://thumbor_server.net/IjY9_2OC4-Ke2g_ox9hb-cje_zM=/100' \
+          'x150/filters:quality(50)/http://google.com/favicon.ico'
+          )
+        expect(fake_product.image.form_thumbnail_2.url).to eq(
+          'http://thumbor_server.net/QGjyXwbV-z-JUanOuPWF \
+          tJbLmUw=/100x150/http://google.com/favicon.ico'
+          )
       end
 
       context 'when the image is valid' do

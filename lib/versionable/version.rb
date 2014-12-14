@@ -1,3 +1,7 @@
+require 'openssl'
+require 'base64'
+require 'uri'
+
 module Versionable
   class Version
     FIT_IN = 'fit-in'.freeze

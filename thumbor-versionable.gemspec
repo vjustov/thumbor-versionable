@@ -5,7 +5,7 @@ require 'new_idea_cms/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'thumbor-versionable'
-  spec.version       = Versionable::VERSION
+  spec.version       = Versionable.version
   spec.authors       = ['Viktor Justo']
   spec.email         = ['viktor@vjustov.me']
   spec.description   = 'A Thumbor client to specify versions of given image.'
