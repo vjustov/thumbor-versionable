@@ -1,7 +1,6 @@
 # encoding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'new_idea_cms/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'thumbor-versionable'
