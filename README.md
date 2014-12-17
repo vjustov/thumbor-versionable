@@ -12,13 +12,35 @@ This gem provides a simple and extremely flexible way generate thumbor URLs for 
 
 ## Installation
 
-In Rails, add it to your Gemfile:
+thumbor-versionable can be installed to use with any Ruby web framework. The first step is to install the gem:
+
+    $ gem install thumbor-versionable
+
+Or include it in your project's Gemfile with Bundler:
 
     gem 'thumbor-versionable', github: 'vjustov/thumbor-versionable'
 
-Finally, restart the server to apply the changes.
+If you are using rails, that's it! if you are using anything else you will have to require the gem whenever you want to use it.
+
+    require 'versionable'
+
+Just in case, restart the server to apply the changes.
 
 ## Usage
+
+You can use thumbor-versionable in one of two ways. if you just want to generate a url of an image to use with thumbor.
+
+    require 'versionable'
+    require 'versionable/version'
+
+    Versionable.configure do
+      thumbor_server 'thumbor_server.example.com'
+      secret_key 'S3CR37_K3Y' # This is only needed if you want to sign your requests.
+    end
+
+    thumbor_url = Version.new(width: 45, height: 200).url
+
+But if you need many thumbnails or some kind of image manipulation on one of your models you can do it this way:
 
     class Product
       include Versionable
@@ -27,7 +49,7 @@ Finally, restart the server to apply the changes.
         version :form_thumbnail, width: 100, height: 150 do
           filter :quality, 50
         end
-        version :notification_thumbnail, width: 50, height: 50
+        version :notification_thumbnail, width: 50, height: 0
       end
     end
 
@@ -35,7 +57,25 @@ Then you can access a version by doing:
 
     @product.image.form_thumbnail.url
 
-## Support
+### Calculating Metadata
+
+You can generate a metadata url passing the :meta key with a truthy value to Version, which you could then request using Net::HTTP.
+
+    thumbor_url = Version.new(width: 145, height: 340, meta: true).url
+
+But when you have several versions of one image, one request each to get the metadata of them all, it's not a good idea. We formulated a way to calculate the metadata of the different versions based on the metadata of the parent:
+
+    metadata = @product.image.fetch_metadata
+    @product.image.height_from_metadata metadata
+    @product.image.width_from_metadata metadata
+
+    @product.image.notification_thumbnail.height  => 0
+    @product.image.notification_thumbnail.calculate_metadata
+    @product.image.notification_thumbnail.height  => 75
+
+This will only work when the main image metadata has been previously set.
+
+## Thumbor Options
 
 Available arguments to a version are:
 
