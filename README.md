@@ -21,11 +21,15 @@ thumbor-versionable can be installed to use with any Ruby web framework. The fir
 
 Or include it in your project's Gemfile with Bundler:
 
-    gem 'thumbor-versionable', github: 'vjustov/thumbor-versionable'
+```ruby
+gem 'thumbor-versionable', github: 'vjustov/thumbor-versionable'
+```
 
 If you are using rails, that's it! if you are using anything else you will have to require the gem whenever you want to use it.
 
-    require 'versionable'
+```ruby
+require 'versionable'
+```
 
 Just in case, restart the server to apply the changes.
 
@@ -33,48 +37,60 @@ Just in case, restart the server to apply the changes.
 
 You can use thumbor-versionable in one of two ways. if you just want to generate a url of an image to use with thumbor.
 
-    require 'versionable'
-    require 'versionable/version'
+```ruby
+require 'versionable'
+require 'versionable/version'
 
-    Versionable.configure do
-      thumbor_server 'thumbor_server.example.com'
-      secret_key 'S3CR37_K3Y' # This is only needed if you want to sign your requests.
-    end
+Versionable.configure do
+  thumbor_server 'thumbor_server.example.com'
+  secret_key 'S3CR37_K3Y' # This is only needed if you want to sign your requests.
+end
 
-    thumbor_url = Version.new(width: 45, height: 200).url
+thumbor_url = Version.new(width: 45, height: 200).url
+```
 
 But if you need many thumbnails or some kind of image manipulation on one of your models you can do it this way:
 
-    class Product
-      include Versionable
+```ruby
+class Product
+  include Versionable
 
-      versionable :image, :external_fake_image do
-        version :form_thumbnail, width: 100, height: 150 do
-          filter :quality, 50
-        end
-        version :notification_thumbnail, width: 50, height: 0
-      end
+  versionable :image, :external_fake_image do
+    version :form_thumbnail, width: 100, height: 150 do
+      filter :quality, 50
     end
+    version :notification_thumbnail, width: 50, height: 0
+  end
+end
+```
 
 Then you can access a version by doing:
 
-    @product.image.form_thumbnail.url
+```ruby
+@product.image.form_thumbnail.url
+```
 
 ### Calculating Metadata
 
 You can generate a metadata url passing the :meta key with a truthy value to Version, which you could then request using Net::HTTP.
 
-    thumbor_url = Version.new(width: 145, height: 340, meta: true).url
+```ruby
+thumbor_url = Version.new(width: 145, height: 340, meta: true).url
+```
 
 But when you have several versions of one image, one request each to get the metadata of them all, it's not a good idea. We formulated a way to calculate the metadata of the different versions based on the metadata of the parent:
 
-    metadata = @product.image.fetch_metadata
-    @product.image.height_from_metadata metadata
-    @product.image.width_from_metadata metadata
+```ruby
+metadata = @product.image.fetch_metadata
+@product.image.height_from_metadata metadata
+@product.image.width_from_metadata metadata
 
-    @product.image.notification_thumbnail.height  => 0
-    @product.image.notification_thumbnail.calculate_metadata
-    @product.image.notification_thumbnail.height  => 75
+@product.image.notification_thumbnail.height
+=> 0
+@product.image.notification_thumbnail.calculate_metadata
+@product.image.notification_thumbnail.height
+=> 75
+```
 
 This will only work when the main image metadata has been previously set.
 
@@ -90,12 +106,14 @@ Available arguments to a version are:
 
 Filters can be specified in a DSL way and all are supported. You can also include the same filter more than once and they will appear in that order.
 
-    version :form_thumbnail, width: 100, height: 150 do
-      filter :colorize, [25,10,53,'79A8B2']
-      filter :quality, 50
-      filter :grayscale
-      filter :colorize, [35,40,50,'79A8B2']
-    end
+```ruby
+version :form_thumbnail, width: 100, height: 150 do
+  filter :colorize, [25,10,53,'79A8B2']
+  filter :quality, 50
+  filter :grayscale
+  filter :colorize, [35,40,50,'79A8B2']
+end
+```
 
 If you need more info on what each option does, check [thumbor's documentation](github.com/thumbor/thumbor/wiki).
 
