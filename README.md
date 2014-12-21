@@ -2,6 +2,9 @@ thumbor-versionable
 ===================
 
 [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/vjustov/thumbor-versionable?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Code Climate](https://codeclimate.com/github/vjustov/thumbor-versionable/badges/gpa.svg)](https://codeclimate.com/github/vjustov/thumbor-versionable)
+[![Test Coverage](https://codeclimate.com/github/vjustov/thumbor-versionable/badges/coverage.svg)](https://codeclimate.com/github/vjustov/thumbor-versionable)
+[![Build Status](https://travis-ci.org/vjustov/thumbor-versionable.svg?branch=master)](https://travis-ci.org/vjustov/thumbor-versionable)
 
 A Thumbor client that lets you specify versions of given image and generates the url for them.
 
