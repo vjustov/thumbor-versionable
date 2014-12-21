@@ -1,4 +1,4 @@
-require "codeclimate-test-reporter"
+require 'codeclimate-test-reporter'
 CodeClimate::TestReporter.start
 
 # Dir[File.'../lib/**/*.rb'].each { |file| require file }
@@ -6,6 +6,8 @@ require 'versionable'
 require 'versionable/image'
 require 'versionable/version'
 require 'versionable/configuration'
+
+require 'ostruct'
 
 RSpec.configure do |config|
   config.color = true
