@@ -114,8 +114,8 @@ describe Versionable do
           'x150/filters:quality(50)/http://google.com/favicon.ico'
           )
         expect(fake_product.image.form_thumbnail_2.url).to eq(
-          'http://thumbor_server.net/QGjyXwbV-z-JUanOuPWF \
-          tJbLmUw=/100x150/http://google.com/favicon.ico'
+          'http://thumbor_server.net/QGjyXwbV-z-JUanOuPWF' \
+          'tJbLmUw=/100x150/http://google.com/favicon.ico'
           )
       end
 
