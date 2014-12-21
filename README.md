@@ -22,7 +22,7 @@ thumbor-versionable can be installed to use with any Ruby web framework. The fir
 Or include it in your project's Gemfile with Bundler:
 
 ```ruby
-gem 'thumbor-versionable', github: 'vjustov/thumbor-versionable'
+gem 'thumbor-versionable', '~> 0.2.3'
 ```
 
 If you are using rails, that's it! if you are using anything else you will have to require the gem whenever you want to use it.
