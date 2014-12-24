@@ -3,10 +3,6 @@ AllCops:
     - 'vendor/**/*'
     - 'spec/fixtures/**/*'
 
-Style/AlignHash:
-  EnforcedHashRocketStyle: separator
-  EnforcedColonStyle: separator
-
 Style/CollectionMethods:
   # Mapping from undesired method to desired_method
   # e.g. to use `detect` over `find`:
@@ -55,18 +51,6 @@ Style/DoubleNegation:
 
 Style/ClassCheck:
   Description: 'Enforces consistent use of `Object#is_a?` or `Object#kind_of?`.'
-  Enabled: false
-
-Metrics/AbcSize:
-  Description: >-
-                 A calculated magnitude based on number of assignments,
-                 branches, and conditions.
-  Enabled: false
-
-Style/AlignHash:
-  Description: >-
-                 Align the elements of a hash literal if they span more than
-                 one line.
   Enabled: false
 
 Style/TrailingBlankLines:
