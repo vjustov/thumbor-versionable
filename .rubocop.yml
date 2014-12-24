@@ -63,12 +63,6 @@ Metrics/AbcSize:
                  branches, and conditions.
   Enabled: false
 
-Metrics/LineLength:
-  Description: 'Limit lines to 100 characters.'
-  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#80-character-limits'
-  Enabled: true
-  Max: 100
-
 Style/AlignHash:
   Description: >-
                  Align the elements of a hash literal if they span more than

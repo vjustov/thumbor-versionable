@@ -25,11 +25,11 @@ describe Versionable::Image do
   it 'should be rendered as a json' do
     expect(image).to respond_to(:to_json)
     expect(image.to_json).to eq(
-     '{"url":"https://s3.amazonaws.com/ksr/assets/moo.png","form_thumbnail":{"url":"ht' \
-     'tp://thumbor_server.net/JCvCnwX3k3NBcHOF_HICTy9dEk8=/100x150/filters:quality(50)' \
-     '/https://s3.amazonaws.com/ksr/assets/moo.png"},"form_thumbnail_2":{"url":"http:/' \
-     '/thumbor_server.net/pzNWZlQuWGNjwy2Ix-83Nc4gswY=/100x150/https://s3.amazonaws.co' \
-     'm/ksr/assets/moo.png"}}')
+      '{"url":"https://s3.amazonaws.com/ksr/assets/moo.png","form_thumbnail":' \
+      '{"url":"http://thumbor_server.net/JCvCnwX3k3NBcHOF_HICTy9dEk8=/100x150' \
+      '/filters:quality(50)/https://s3.amazonaws.com/ksr/assets/moo.png"},"fo' \
+      'rm_thumbnail_2":{"url":"http://thumbor_server.net/pzNWZlQuWGNjwy2Ix-83' \
+      'Nc4gswY=/100x150/https://s3.amazonaws.com/ksr/assets/moo.png"}}')
   end
 
   context 'when the image is valid' do
