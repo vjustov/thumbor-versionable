@@ -4,17 +4,19 @@ describe Versionable::Version do
   let(:version) do
     described_class.new OpenStruct.new(
       url: 'https://s3.amazonaws.com/ksr/assets/moo.png'
-      ), width: 100, height: 150
+    ), width: 100, height: 150 do
+      crop from: { x: 10, y: 35 }, to: { x: 34, y: 50 }
+    end
   end
 
-  it 'should responds to :url' do
+  it 'respond to :url' do
     expect(version).to respond_to(:url)
   end
 
-  it 'should correctly constructs the url' do
+  it 'constructs the url' do
     expect(version.url).to eq(
-      'http://thumbor_server.net/pzNWZlQuWGNjwy2Ix-83Nc4gswY=/100' \
-      'x150/https://s3.amazonaws.com/ksr/assets/moo.png'
+      'http://thumbor_server.net/FxHmUkBMExDwP5U6Ik00YrKMlKA=/10x35:' \
+      '34x50/100x150/https://s3.amazonaws.com/ksr/assets/moo.png'
       )
   end
 
