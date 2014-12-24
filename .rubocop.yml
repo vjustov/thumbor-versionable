@@ -21,11 +21,6 @@ Style/CollectionMethods:
     detect: 'find'
     select: 'find_all'
 
-Style/GuardClause:
-  Description: "Check for conditionals that can be replaced with guard clauses"
-  StyleGuide: "https://github.com/bbatsov/ruby-style-guide#no-nested-conditionals"
-  Enabled: true
-
 # I don't want to write documentation for every class
 Style/Documentation:
   Description: "Document classes and non-namespace modules."
@@ -83,10 +78,6 @@ Style/AlignHash:
 Style/TrailingBlankLines:
   Description: 'Checks trailing blank lines and final newline.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#newline-eof'
-  Enabled: false
-
-Style/IndentHash:
-  Description: 'Checks the indentation of the first key in a hash literal.'
   Enabled: false
 
 Lint/UnusedMethodArgument:

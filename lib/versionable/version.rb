@@ -32,16 +32,22 @@ module Versionable
 
     def calculate_metadata
       {
-         width: @width = width != 0 ? width : (image.width * height) / \
-                                              image.height,
-         height: @height = height != 0 ? height : (image.height * width) / \
-                                                  image.width
+        width: calculate_width,
+        height: calculate_height
       }
     end
 
     private
 
     attr_reader :image, :fit_in, :smart, :filters
+
+    def calculate_width
+      @width = width != 0 ? width : (image.width * height) / image.height
+    end
+
+    def calculate_height
+      @height = height != 0 ? height : (image.height * width) / image.width
+    end
 
     def options_url
       [
