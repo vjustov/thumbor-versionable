@@ -21,7 +21,7 @@ module Versionable
     def versionable(accessor, column, &blk)
       instance_eval <<-EOF
       define_method(accessor) do
-        @#{accessor} ||= Versionable::Image.new(self, :#{column}, :#{accessor}, &blk)
+        @#{accessor} ||= Image.new(self, :#{column}, :#{accessor}, &blk)
       end
       EOF
     end
