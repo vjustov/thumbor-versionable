@@ -8,6 +8,8 @@ module Versionable
     SMART = 'smart'.freeze
     UNSAFE = 'unsafe'.freeze
     META = 'meta'.freeze
+    HALIGNEMENTS = %w(left center right).freeze
+    VALIGNEMENTS = %w(top middle bottom).freeze
 
     attr_reader :width, :height
     def initialize(image, parameters, &blk)
@@ -55,6 +57,8 @@ module Versionable
         crop,
         fit_in,
         measurements,
+        horizontal_align,
+        vertical_align,
         smart,
         filters,
         decoded_url
@@ -73,6 +77,14 @@ module Versionable
 
     def filter(name, values = nil)
       @filters << { name => values }
+    end
+
+    def horizontal_align(value = nil)
+      value && HALIGNEMENTS.include?("#{value}") ? @halign = value : @halign
+    end
+
+    def vertical_align(value = nil)
+      value && VALIGNEMENTS.include?("#{value}") ? @valign = value : @valign
     end
 
     # Serves as getter and setter.
