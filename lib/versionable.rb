@@ -3,7 +3,7 @@ module Versionable
     attr_reader :config
 
     def version
-      '0.2.3'
+      '0.2.4'
     end
 
     def configure(&blk)
@@ -21,7 +21,7 @@ module Versionable
     def versionable(accessor, column, &blk)
       instance_eval <<-EOF
       define_method(accessor) do
-        @#{accessor} ||= Versionable::Image.new(self, :#{column}, :#{accessor}, &blk)
+        @#{accessor} ||= Image.new(self, :#{column}, :#{accessor}, &blk)
       end
       EOF
     end

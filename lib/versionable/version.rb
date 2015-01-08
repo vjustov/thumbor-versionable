@@ -8,6 +8,8 @@ module Versionable
     SMART = 'smart'.freeze
     UNSAFE = 'unsafe'.freeze
     META = 'meta'.freeze
+    HALIGNEMENTS = %w(left center right).freeze
+    VALIGNEMENTS = %w(top middle bottom).freeze
 
     attr_reader :width, :height
     def initialize(image, parameters, &blk)
@@ -32,10 +34,8 @@ module Versionable
 
     def calculate_metadata
       {
-         width: @width = width != 0 ? width : (image.width * height) / \
-                                              image.height,
-         height: @height = height != 0 ? height : (image.height * width) / \
-                                                  image.width
+        width: calculate_width,
+        height: calculate_height
       }
     end
 
@@ -43,12 +43,22 @@ module Versionable
 
     attr_reader :image, :fit_in, :smart, :filters
 
+    def calculate_width
+      @width = width != 0 ? width : (image.width * height) / image.height
+    end
+
+    def calculate_height
+      @height = height != 0 ? height : (image.height * width) / image.width
+    end
+
     def options_url
       [
         meta,
         crop,
         fit_in,
         measurements,
+        horizontal_align,
+        vertical_align,
         smart,
         filters,
         decoded_url
@@ -67,6 +77,14 @@ module Versionable
 
     def filter(name, values = nil)
       @filters << { name => values }
+    end
+
+    def horizontal_align(value = nil)
+      value && HALIGNEMENTS.include?("#{value}") ? @halign = value : @halign
+    end
+
+    def vertical_align(value = nil)
+      value && VALIGNEMENTS.include?("#{value}") ? @valign = value : @valign
     end
 
     # Serves as getter and setter.

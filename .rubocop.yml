@@ -3,10 +3,6 @@ AllCops:
     - 'vendor/**/*'
     - 'spec/fixtures/**/*'
 
-Style/AlignHash:
-  EnforcedHashRocketStyle: separator
-  EnforcedColonStyle: separator
-
 Style/CollectionMethods:
   # Mapping from undesired method to desired_method
   # e.g. to use `detect` over `find`:
@@ -20,11 +16,6 @@ Style/CollectionMethods:
     reduce: 'inject'
     detect: 'find'
     select: 'find_all'
-
-Style/GuardClause:
-  Description: "Check for conditionals that can be replaced with guard clauses"
-  StyleGuide: "https://github.com/bbatsov/ruby-style-guide#no-nested-conditionals"
-  Enabled: true
 
 # I don't want to write documentation for every class
 Style/Documentation:
@@ -62,31 +53,9 @@ Style/ClassCheck:
   Description: 'Enforces consistent use of `Object#is_a?` or `Object#kind_of?`.'
   Enabled: false
 
-Metrics/AbcSize:
-  Description: >-
-                 A calculated magnitude based on number of assignments,
-                 branches, and conditions.
-  Enabled: false
-
-Metrics/LineLength:
-  Description: 'Limit lines to 100 characters.'
-  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#80-character-limits'
-  Enabled: true
-  Max: 100
-
-Style/AlignHash:
-  Description: >-
-                 Align the elements of a hash literal if they span more than
-                 one line.
-  Enabled: false
-
 Style/TrailingBlankLines:
   Description: 'Checks trailing blank lines and final newline.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#newline-eof'
-  Enabled: false
-
-Style/IndentHash:
-  Description: 'Checks the indentation of the first key in a hash literal.'
   Enabled: false
 
 Lint/UnusedMethodArgument:
