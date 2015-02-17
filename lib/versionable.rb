@@ -27,3 +27,7 @@ module Versionable
     end
   end
 end
+
+require 'versionable/configuration'
+require 'versionable/image'
+require 'versionable/version'
