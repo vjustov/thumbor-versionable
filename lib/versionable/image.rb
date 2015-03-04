@@ -14,7 +14,7 @@ module Versionable
     end
 
     def url
-      blank?(model.send(column)) ? legacy_url(accessor) : model.send(column)
+      model.send(column)
     end
 
     def respond_to?(method, include_private = false)
