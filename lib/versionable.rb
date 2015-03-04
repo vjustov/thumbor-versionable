@@ -3,7 +3,7 @@ module Versionable
     attr_reader :config
 
     def version
-      '0.2.5'
+      '0.2.6'
     end
 
     def configure(&blk)
