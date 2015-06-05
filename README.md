@@ -46,7 +46,7 @@ Versionable.configure do
   secret_key 'S3CR37_K3Y' # This is only needed if you want to sign your requests.
 end
 
-thumbor_url = Version.new(width: 45, height: 200).url
+thumbor_url = Versionable::Version.new(OpenStruct.new(url: 'url.com/path/to/image.jpeg'), width: 45, height: 200).url
 ```
 
 But if you need many thumbnails or some kind of image manipulation on one of your models you can do it this way:
