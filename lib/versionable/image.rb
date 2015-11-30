@@ -4,10 +4,9 @@ module Versionable
     class InvalidMetadata < StandardError; end
 
     attr_reader :width, :height
-    def initialize(model, column, accessor, &blk)
+    def initialize(model, column, &blk)
       @model = model
       @column = column
-      @accessor = accessor
       @versions = {}
 
       instance_eval(&blk) if block_given?
@@ -53,7 +52,7 @@ module Versionable
 
     private
 
-    attr_reader :model, :column, :accessor, :versions
+    attr_reader :model, :column, :versions
 
     def method_missing(name, *args, &blk)
       if versions.respond_to?(:key?) && versions.key?(name)

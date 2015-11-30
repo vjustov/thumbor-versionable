@@ -1,10 +1,12 @@
 require 'spec_helper'
 
 describe Versionable::Image do
+  let(:mock) do
+    OpenStruct.new(url: "https://s3.amazonaws.com/ksr/assets/moo.png")
+  end
+
   let(:image) do
-    described_class.new OpenStruct.new(
-      url: 'https://s3.amazonaws.com/ksr/assets/moo.png'
-      ), :url, :accessor do
+    described_class.new(mock, :url) do
       version :form_thumbnail, width: 100, height: 150 do
         filter :quality, 50
       end
