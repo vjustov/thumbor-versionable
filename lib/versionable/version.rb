@@ -19,7 +19,7 @@ module Versionable
       @fit_in = parameters.fetch(:fit_in) { false }
       @smart = parameters.fetch(:smart) { false }
       @meta = parameters.fetch(:meta) { false }
-      @filters = []
+      @filters = parameters.fetch(:filters) { [] }
 
       instance_eval(&blk) if block_given?
     end
